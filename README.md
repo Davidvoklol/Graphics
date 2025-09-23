@@ -4,13 +4,13 @@
 The repo contains [glfw](https://www.glfw.org/download.html) as a submodule so you have to clone this recursively
 ```bash
 git clone --recursive https://github.com/Davidvoklol/Graphics.git
-cd Graphics
 ```
 
 ## 2. Config the project
 
 For the lsp to work correctly you have to config the repo with [cmake](https://cmake.org/).
 ```bash
+cd Graphics
 cmake -B build -S .
 ```
 
