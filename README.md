@@ -20,4 +20,4 @@ Both for linux and windows you should build with
 ```bash
 cmake --build build
 ```
-and for windows the .exe file will be in `build/Debug` folder
+and the executabke will be in `build/` for linux, and in `build/Debug` for windows
