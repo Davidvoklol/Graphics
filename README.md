@@ -2,7 +2,7 @@
 
 ## Dependencies
 To build this project you'll need 
-- [cmake](https://cmake.org/ 
+- [cmake](https://cmake.org/)
 - c++ compiler
 
 >[!TIP]
