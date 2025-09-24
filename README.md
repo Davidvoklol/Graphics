@@ -7,9 +7,9 @@ To build this project you'll need
 
 >[!TIP]
 > ### Standard compilers
-> | Windows | Linux | MacOs |
-> | ------- | ----- | ----- |
-> |  MSVC   |  GCC  | Clang |
+> | *Platform* | Windows | Linux | MacOs |
+> | ---------- | ------- | ----- | ----- |
+> | *Compiler* |  MSVC   |  GCC  | Clang |
 
 
 ## 1. Clone the repo
