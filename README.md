@@ -1,5 +1,17 @@
 # Cross-Platform Graphics Project
 
+## Dependencies
+To build this project you'll need 
+- [cmake](https://cmake.org/ 
+- c++ compiler
+
+>[!TIP]
+> ### Standard compilers
+> | Windows | Linux | MacOs |
+> | ------- | ----- | ----- |
+> |  MSVC   |  GCC  | Clang |
+
+
 ## 1. Clone the repo
 The repo contains [glfw](https://www.glfw.org/download.html) as a submodule so you have to clone this recursively
 ```bash
