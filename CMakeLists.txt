@@ -4,6 +4,7 @@ project(Graphics)
 
 add_executable(Graphics 
 	src/main.cpp
+	src/GlBuffer.cpp
 	external/glad/src/glad.c
 )
 

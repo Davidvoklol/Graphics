@@ -1,9 +1,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "GlBuffer.h"
 
-int main(void)
-{
+int main(void) {
 	GLFWwindow* window;
 
 	if (!glfwInit()) return -1;
@@ -40,26 +40,21 @@ int main(void)
 		2, 3, 0
 	};
 
-	unsigned int vb, ib, va;
-	glad_glGenBuffers(1, &vb);
-	glad_glGenBuffers(1, &ib);
-	glad_glGenVertexArrays(1, &va);
+	unsigned int va;
+	glGenVertexArrays(1, &va);
 
-	glad_glBindVertexArray(va);
-	glad_glBindBuffer(GL_ARRAY_BUFFER, vb);
-	glad_glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib);
+	glBindVertexArray(va);
 
-	glad_glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), positions, GL_STATIC_DRAW);
-	glad_glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_STATIC_DRAW);
+	GlBuffer vb(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW, 8);
+	GlBuffer ib(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW, 6);
 
-	glad_glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
-	glad_glEnableVertexAttribArray(0);
-
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
 
 	while (!glfwWindowShouldClose(window)) {
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glad_glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, ib.count, GL_UNSIGNED_INT, 0);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
