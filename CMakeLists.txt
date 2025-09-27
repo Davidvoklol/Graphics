@@ -6,6 +6,7 @@ add_executable(Graphics
 	src/main.cpp
 	src/GlBuffer.cpp
 	src/GlVertexArray.cpp
+	src/Shader.cpp
 	external/glad/src/glad.c
 )
 

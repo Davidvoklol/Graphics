@@ -3,8 +3,7 @@
 #include <iostream>
 #include "GlBuffer.h"
 #include "GlVertexArray.h"
-#include <fstream>
-#include <string>
+#include "./Shader.h"
 
 int main(void) {
 	GLFWwindow* window;
@@ -48,51 +47,8 @@ int main(void) {
 	GlBuffer ib(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW, 6);
 	va.SetLayout(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
 
-	unsigned int vs = glCreateShader(GL_VERTEX_SHADER);
-	unsigned int fs = glCreateShader(GL_FRAGMENT_SHADER);
-
-	std::string vertex_buffer;
-	std::string fragment_buffer;
-
-	const char* shader_path = "res/shaders/Basic.glsl";
-	std::ifstream shader_sources(shader_path);
-	if (!shader_sources.is_open()) {
-		std::cerr << "Failed to open file\n";
-		return 1;
-	}
-
-	int TYPE = -1;
-
-	std::string line;
-    while (std::getline(shader_sources, line)) {
-		if (line.find("#shader") != std::string::npos) {
-			if (line.find("vertex") != std::string::npos) TYPE = 0;
-			else if(line.find("fragment") != std::string::npos) TYPE = 1;
-		} else {
-			if (TYPE == 0) vertex_buffer += line + "\n";
-			if (TYPE == 1) fragment_buffer += line + "\n";
-		}
-    }
-
-	shader_sources.close();
-
-	char* vs_source = &vertex_buffer[0];
-	char* fs_source = &fragment_buffer[0];
-	
-	glad_glShaderSource(vs, 1, &vs_source, nullptr);
-	glad_glShaderSource(fs, 1, &fs_source, nullptr);
-
-	glCompileShader(vs);
-	glCompileShader(fs);
-
-	unsigned int program = glCreateProgram();
-
-	glAttachShader(program, vs);
-	glAttachShader(program, fs);
-
-	glLinkProgram(program);
-
-	glUseProgram(program);
+	Shader shader("res/shaders/Basic.glsl");
+	shader.Bind();
 
 	while (!glfwWindowShouldClose(window)) {
 		glClear(GL_COLOR_BUFFER_BIT);
